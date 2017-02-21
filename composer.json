@@ -2,10 +2,10 @@
     "name": "makaira/shared-libs",
     "type": "library",
     "require": {
-        "kore/data-objects": "@stable"
+        "kore/data-object": "@stable"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Makaira\\": "src/"
         }
     }
