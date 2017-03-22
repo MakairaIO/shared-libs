@@ -12,4 +12,5 @@ class Changes extends DataObject
     public $changes;
     public $active;
     public $language;
+    public $highLoad = false;
 }
