@@ -72,7 +72,7 @@ class Query extends DataObject
             }
         }
 
-        if (preg_match('(^[a-z]{2}$)', $this->constraints[Constraints::LANGUAGE])) {
+        if (0 === preg_match('(^[a-z]{2}$)', $this->constraints[Constraints::LANGUAGE])) {
             throw new \DomainException('Language constraint must be two letters in lowercase.');
         }
     }
