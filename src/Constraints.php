@@ -21,4 +21,9 @@ final class Constraints
      * Filter search result by category id.
      */
     const CATEGORY = 'query.category_id';
+
+    /**
+     * Filter search result by manufacturer id.
+     */
+    const MANUFACTURER = 'query.manufacturer_id';
 }
