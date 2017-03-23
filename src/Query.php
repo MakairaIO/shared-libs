@@ -22,17 +22,17 @@ class Query extends DataObject
     /**
      * @var array
      */
-    public $contraints;
+    public $contraints = [];
 
     /**
      * @var array
      */
-    public $aggregations;
+    public $aggregations = [];
 
     /**
      * @var array
      */
-    public $sorting;
+    public $sorting = [];
 
     /**
      * @var integer
