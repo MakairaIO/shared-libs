@@ -26,4 +26,9 @@ final class Constraints
      * Filter search result by manufacturer id.
      */
     const MANUFACTURER = 'query.manufacturer_id';
+
+    /**
+     * Language used in this query.
+     */
+    const LANGUAGE = 'query.language';
 }

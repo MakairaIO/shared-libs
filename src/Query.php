@@ -43,4 +43,16 @@ class Query extends DataObject
      * @var integer
      */
     public $offset;
+
+    /**
+     * @param string $constraint
+     * @return string
+     */
+    public function getConstraint($constraint)
+    {
+        if (isset($this->constraints[$constraint])) {
+            return $this->constraints[$constraint];
+        }
+        return null;
+    }
 }
