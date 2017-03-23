@@ -22,7 +22,7 @@ class Query extends DataObject
     /**
      * @var array
      */
-    public $contraints = [];
+    public $constraints = [];
 
     /**
      * @var array
