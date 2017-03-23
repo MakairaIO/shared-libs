@@ -12,5 +12,13 @@ namespace Makaira;
 
 final class Constraints
 {
+    /**
+     * Use stock information to filter search results.
+     */
     const USE_STOCK = 'query.use_stock';
+
+    /**
+     * Filter search result by category id.
+     */
+    const CATEGORY = 'query.category_id';
 }
