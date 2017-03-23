@@ -55,4 +55,25 @@ class Query extends DataObject
         }
         return null;
     }
+
+    /**
+     * @throws \DomainException
+     */
+    public function verify()
+    {
+        $mandatoryConstraints = array(
+            Constraints::LANGUAGE => 'language',
+            Constraints::SHOP => 'shop identifier'
+        );
+
+        foreach ($mandatoryConstraints as $key => $label) {
+            if (!isset($this->constraints[$key])) {
+                throw new \DomainException(sprintf('Missing mandatory %s constraint.', $label));
+            }
+        }
+
+        if (preg_match('(^[a-z]{2}$)', $this->constraints[Constraints::LANGUAGE])) {
+            throw new \DomainException('Language constraint must be two letters in lowercase.');
+        }
+    }
 }

@@ -28,6 +28,11 @@ final class Constraints
     const MANUFACTURER = 'query.manufacturer_id';
 
     /**
+     * Only search in the specified shop.
+     */
+    const SHOP = 'query.shop_id';
+
+    /**
      * Language used in this query.
      */
     const LANGUAGE = 'query.language';
