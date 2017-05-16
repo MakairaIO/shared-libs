@@ -18,6 +18,18 @@ class Stream extends HttpClient
     private $headers = array();
 
     /**
+     * socket timeout
+     *
+     * @var float
+     */
+    private $timeout;
+
+    public function __construct($timeout = 1.0)
+    {
+        $this->timeout= $timeout;
+    }
+
+    /**
      * Add default headers
      *
      * @param array $headers
@@ -52,6 +64,7 @@ class Stream extends HttpClient
                         'method'        => $method,
                         'content'       => $body,
                         'ignore_errors' => true,
+                        'timeout'       => $this->timeout,
                         'header'        => implode(
                             "\r\n",
                             array_merge(
