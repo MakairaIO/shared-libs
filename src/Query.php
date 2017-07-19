@@ -40,6 +40,11 @@ class Query extends DataObject
     public $sorting = [];
 
     /**
+     * @var array
+     */
+    public $fields;
+
+    /**
      * @var integer
      */
     public $count;
@@ -80,7 +85,7 @@ class Query extends DataObject
         if (0 === preg_match('(^[a-z]{2}$)', $this->constraints[Constraints::LANGUAGE])) {
             throw new \DomainException('Language constraint must be two letters in lowercase.');
         }
-        
+
         if (false === is_bool($this->enableAggregations)) {
             throw new \DomainException('Field $enableAggregations must be a boolean value.');
         }
