@@ -30,6 +30,11 @@ class Query extends DataObject
     public $enableAggregations = true;
 
     /**
+     * @var boolean
+     */
+    public $isSearch = true;
+
+    /**
      * @var array
      */
     public $aggregations = [];
@@ -88,6 +93,10 @@ class Query extends DataObject
 
         if (false === is_bool($this->enableAggregations)) {
             throw new \DomainException('Field $enableAggregations must be a boolean value.');
+        }
+
+        if (false === is_bool($this->isSearch)) {
+            throw new \DomainException('Field $isSearch must be a boolean value.');
         }
     }
 }
