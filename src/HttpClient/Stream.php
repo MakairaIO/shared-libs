@@ -50,7 +50,7 @@ class Stream extends HttpClient
      * @param string $url
      * @param mixed $body
      * @param array $headers
-     * @return Reponse
+     * @return Response
      */
     public function request($method, $url, $body = null, array $headers = array())
     {

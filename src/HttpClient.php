@@ -11,7 +11,7 @@ abstract class HttpClient
      * @param string $url
      * @param mixed $body
      * @param array $headers
-     * @return HttpClient\Reponse
+     * @return HttpClient\Response
      */
     abstract public function request($method, $url, $body = null, array $headers = array());
 }

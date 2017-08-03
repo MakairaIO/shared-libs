@@ -9,6 +9,11 @@ class Signing extends HttpClient
     /**
      * @var HttpClient
      */
+    private $aggregate;
+
+    /**
+     * @var string
+     */
     private $sharedSecret;
 
     public function __construct(HttpClient $aggregate, $sharedSecret)
@@ -24,7 +29,8 @@ class Signing extends HttpClient
      * @param string $url
      * @param mixed $body
      * @param array $headers
-     * @return HttpClient\Reponse
+     *
+     * @return HttpClient\Response
      */
     public function request($method, $url, $body = null, array $headers = array())
     {
