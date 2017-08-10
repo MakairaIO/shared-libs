@@ -8,7 +8,6 @@
 
 namespace Makaira\HttpClient;
 
-
 use Makaira\HttpClient;
 
 class Curl extends HttpClient
@@ -18,7 +17,7 @@ class Curl extends HttpClient
      *
      * @var array
      */
-    private $headers = array();
+    private $headers = [];
 
     /**
      * socket timeout
@@ -36,6 +35,7 @@ class Curl extends HttpClient
      * Add default headers
      *
      * @param array $headers
+     *
      * @return void
      */
     public function addDefaultHeaders(array $headers)
@@ -51,19 +51,22 @@ class Curl extends HttpClient
      *
      * @param string $method
      * @param string $url
-     * @param mixed $body
-     * @param array $headers
+     * @param mixed  $body
+     * @param array  $headers
+     *
      * @return HttpClient\Reponse
      */
-    public function request($method, $url, $body = null, array $headers = array())
+    public function request($method, $url, $body = null, array $headers = [])
     {
-        $ch = curl_init();
+        $ch           = curl_init();
+        $headerBuffer = fopen('php://memory', 'w+');
+        $options      = [];
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array_merge($this->headers, $headers));
-        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_WRITEHEADER, $headerBuffer);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout);
 
         $curlResponse = curl_exec($ch);
@@ -78,34 +81,37 @@ class Curl extends HttpClient
 
         curl_close($ch);
 
-        $response = new HttpClient\Response();
-        $response->body = $this->get_body_from_curl_response($curlResponse);
-        $response->headers = $this->get_headers_from_curl_response($curlResponse);
+        fseek($headerBuffer, 0, SEEK_SET);
+        $responseHeaders = stream_get_contents($headerBuffer);
+        fclose($headerBuffer);
 
-        preg_match('(^HTTP/(?P<version>\d+\.\d+)\s+(?P<status>\d+))S', $response->headers['http_code'], $match);
-        $response->status = $match['status'];
+        $response       = new HttpClient\Response();
+        $response->body = $curlResponse;
+
+        $this->parseResponseHeaders($responseHeaders, $response);
+
 
         return $response;
     }
 
-    private function get_body_from_curl_response($response){
-        list($header, $body) = explode("\r\n\r\n", $response, 2);
-        return $body;
-    }
-
-    private function get_headers_from_curl_response($response)
+    private function parseResponseHeaders($responseHeaders, $response)
     {
-        $headers = array();
-        $header_text = substr($response, 0, strpos($response, "\r\n\r\n"));
-        foreach (explode("\r\n", $header_text) as $i => $line)
-            if ($i === 0)
-                $headers['http_code'] = $line;
-            else
-            {
-                list ($key, $value) = explode(': ', $line);
+        $response->headers = [];
+        $rawHeader         = trim($responseHeaders);
 
-                $headers[$key] = $value;
+        foreach (explode("\r\n", $rawHeader) as $i => $line) {
+            if (0 == strlen($line)) {
+                continue;
             }
-        return $headers;
+
+            if (0 === strpos($line, 'HTTP/')) {
+                preg_match('(^HTTP/(?P<version>\d+\.\d+)\s+(?P<status>\d+))S', $line, $match);
+                $response->status = $match['status'];
+            } else {
+                list ($key, $value) = explode(': ', $line, 2);
+
+                $response->headers[strtolower($key)] = $value;
+            }
+        }
     }
 }
