@@ -61,10 +61,14 @@ class Curl extends HttpClient
         $ch           = curl_init();
         $headerBuffer = fopen('php://memory', 'w+');
         $options      = [];
+
+        if ('POST' === $method || 'PUT' === $method) {
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+        }
+
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array_merge($this->headers, $headers));
         curl_setopt($ch, CURLOPT_WRITEHEADER, $headerBuffer);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout);
