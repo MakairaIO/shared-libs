@@ -110,7 +110,7 @@ class Curl extends HttpClient
 
             if (0 === strpos($line, 'HTTP/')) {
                 preg_match('(^HTTP/(?P<version>\d+\.\d+)\s+(?P<status>\d+))S', $line, $match);
-                $response->status = $match['status'];
+                $response->status = (int) $match['status'];
             } else {
                 list ($key, $value) = explode(': ', $line, 2);
 
