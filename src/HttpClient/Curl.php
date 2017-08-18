@@ -62,7 +62,7 @@ class Curl extends HttpClient
         $headerBuffer = fopen('php://memory', 'w+');
         $options      = [];
 
-        if ('POST' === $method || 'PUT' === $method) {
+        if (0 < strlen($body)) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         }
 
