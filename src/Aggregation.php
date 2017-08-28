@@ -37,4 +37,9 @@ class Aggregation extends DataObject
     public $min;
 
     public $max;
+
+    /**
+     * @var array
+     */
+    public $selectedValues;
 }
