@@ -18,4 +18,9 @@ class ResultItem extends DataObject
      * @var string
      */
     public $id;
+
+    /**
+     * @var array
+     */
+    public $fields = [];
 }
