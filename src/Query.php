@@ -60,6 +60,11 @@ class Query extends DataObject
     public $offset;
 
     /**
+     * @var string
+     */
+    public $apiVersion;
+
+    /**
      * @param string $constraint
      * @return string
      */
