@@ -42,4 +42,9 @@ class Aggregation extends DataObject
      * @var array
      */
     public $selectedValues;
+
+    /**
+     * @var integer
+     */
+    public $position;
 }
