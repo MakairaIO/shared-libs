@@ -36,4 +36,14 @@ final class Constraints
      * Language used in this query.
      */
     const LANGUAGE = 'query.language';
+
+    /**
+     * Vendor used in this query.
+     */
+    const VENDOR = 'vendor';
+
+    /**
+     * User-Agent-String used in this query.
+     */
+    const USER_AGENT = 'user.agent';
 }
