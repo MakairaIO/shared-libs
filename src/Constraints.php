@@ -46,4 +46,9 @@ final class Constraints
      * User-Agent-String used in this query.
      */
     const USER_AGENT = 'user.agent';
+
+    /**
+     * User-Timezone used in this query.
+     */
+    const USER_TIMEZONE = 'user.timezone';
 }
