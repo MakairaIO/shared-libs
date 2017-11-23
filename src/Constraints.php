@@ -51,4 +51,9 @@ final class Constraints
      * User-Timezone used in this query.
      */
     const USER_TIMEZONE = 'user.timezone';
+
+    /**
+     * User-OiID used in this query.
+     */
+    const USER_OI_ID = 'user.oi_id';
 }
