@@ -43,17 +43,22 @@ final class Constraints
     const VENDOR = 'vendor';
 
     /**
-     * User-Agent-String used in this query.
+     * OI User-ID used in this query.
      */
-    const USER_AGENT = 'user.agent';
+    const OI_USER_ID = 'oi.user.id';
 
     /**
-     * User-Timezone used in this query.
+     * OI User-IP used in this query.
      */
-    const USER_TIMEZONE = 'user.timezone';
+    const OI_USER_IP = 'oi.user.ip';
 
     /**
-     * User-OiID used in this query.
+     * OI User-Agent-String used in this query.
      */
-    const USER_OI_ID = 'user.oi_id';
+    const OI_USER_AGENT = 'oi.user.agent';
+
+    /**
+     * OI User-Timezone used in this query.
+     */
+    const OI_USER_TIMEZONE = 'oi.user.timezone';
 }
