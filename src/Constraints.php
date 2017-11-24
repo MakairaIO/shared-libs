@@ -36,4 +36,29 @@ final class Constraints
      * Language used in this query.
      */
     const LANGUAGE = 'query.language';
+
+    /**
+     * Vendor used in this query.
+     */
+    const VENDOR = 'vendor';
+
+    /**
+     * OI User-ID used in this query.
+     */
+    const OI_USER_ID = 'oi.user.id';
+
+    /**
+     * OI User-IP used in this query.
+     */
+    const OI_USER_IP = 'oi.user.ip';
+
+    /**
+     * OI User-Agent-String used in this query.
+     */
+    const OI_USER_AGENT = 'oi.user.agent';
+
+    /**
+     * OI User-Timezone used in this query.
+     */
+    const OI_USER_TIMEZONE = 'oi.user.timezone';
 }
