@@ -42,6 +42,11 @@ class Query extends DataObject
     /**
      * @var array
      */
+    public $customFilter = [];
+
+    /**
+     * @var array
+     */
     public $sorting = [];
 
     /**
