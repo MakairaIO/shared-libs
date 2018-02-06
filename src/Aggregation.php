@@ -34,8 +34,14 @@ class Aggregation extends DataObject
      */
     public $values;
 
+    /**
+     * @var mixed
+     */
     public $min;
 
+    /**
+     * @var mixed
+     */
     public $max;
 
     /**
@@ -47,4 +53,9 @@ class Aggregation extends DataObject
      * @var integer
      */
     public $position;
+
+    /**
+     * @var bool
+     */
+    public $showDocCount;
 }
