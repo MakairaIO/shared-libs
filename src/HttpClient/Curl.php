@@ -72,6 +72,8 @@ class Curl extends HttpClient
         curl_setopt($ch, CURLOPT_HTTPHEADER, array_merge($this->headers, $headers));
         curl_setopt($ch, CURLOPT_WRITEHEADER, $headerBuffer);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_MAXREDIRS, 3);
 
         $curlResponse = curl_exec($ch);
 
