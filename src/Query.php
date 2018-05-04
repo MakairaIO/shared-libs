@@ -10,19 +10,12 @@
 
 namespace Makaira;
 
-use Kore\DataObject\DataObject;
-
-class Query extends DataObject
+class Query extends AbstractQuery
 {
     /**
      * @var string
      */
     public $searchPhrase;
-
-    /**
-     * @var array
-     */
-    public $constraints = [];
 
     /**
      * @var boolean
@@ -50,56 +43,27 @@ class Query extends DataObject
     public $sorting = [];
 
     /**
-     * @var array
-     */
-    public $fields;
-
-    /**
-     * @var integer
-     */
-    public $count;
-
-    /**
-     * @var integer
-     */
-    public $offset;
-
-    /**
      * @var string
      */
     public $apiVersion;
 
     /**
-     * @param string $constraint
-     * @return string
+     * @return string[]
      */
-    public function getConstraint($constraint)
+    public function getMandatoryConstraints(): array
     {
-        if (isset($this->constraints[$constraint])) {
-            return $this->constraints[$constraint];
-        }
-        return null;
+        return [
+            Constraints::LANGUAGE => 'language',
+            Constraints::SHOP => 'shop identifier'
+        ];
     }
 
     /**
-     * @throws \DomainException
+     * Check query data.
      */
     public function verify()
     {
-        $mandatoryConstraints = array(
-            Constraints::LANGUAGE => 'language',
-            Constraints::SHOP => 'shop identifier'
-        );
-
-        foreach ($mandatoryConstraints as $key => $label) {
-            if (!isset($this->constraints[$key])) {
-                throw new \DomainException(sprintf('Missing mandatory %s constraint.', $label));
-            }
-        }
-
-        if (0 === preg_match('(^[a-z]{2}$)', $this->constraints[Constraints::LANGUAGE])) {
-            throw new \DomainException('Language constraint must be two letters in lowercase.');
-        }
+        parent::verify();
 
         if (false === is_bool($this->enableAggregations)) {
             throw new \DomainException('Field $enableAggregations must be a boolean value.');
