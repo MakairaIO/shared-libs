@@ -68,5 +68,5 @@ abstract class AbstractQuery extends DataObject
     /**
      * @return string[]
      */
-    abstract public function getMandatoryConstraints(): array;
+    abstract public function getMandatoryConstraints();
 }

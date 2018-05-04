@@ -50,7 +50,7 @@ class Query extends AbstractQuery
     /**
      * @return string[]
      */
-    public function getMandatoryConstraints(): array
+    public function getMandatoryConstraints()
     {
         return [
             Constraints::LANGUAGE => 'language',
