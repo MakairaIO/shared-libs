@@ -14,6 +14,51 @@ namespace Makaira;
 class RecommendationQuery extends AbstractQuery
 {
     /**
+     * @var string
+     */
+    public $recommendationId;
+
+    /**
+     * @var string
+     */
+    public $requestId;
+
+    /**
+     * @var string
+     */
+    public $productId;
+
+    /**
+     * @var string
+     */
+    public $categoryId;
+
+    /**
+     * @var string
+     */
+    public $manufacturerId;
+
+    /**
+     * @var string
+     */
+    public $priceRangeMin;
+
+    /**
+     * @var string
+     */
+    public $priceRangeMax;
+
+    /**
+     * @var string
+     */
+    public $timeRangeMin;
+
+    /**
+     * @var string
+     */
+    public $timeRangeMax;
+
+    /**
      * @return string[]
      */
     public function getMandatoryConstraints()
@@ -21,14 +66,20 @@ class RecommendationQuery extends AbstractQuery
         return [
             Constraints::LANGUAGE => 'language',
             Constraints::SHOP => 'shop identifier',
-            Constraints::RECOMMENDATION => 'recommendation identifier',
-            Constraints::RECOMMENDATION_REQUEST => 'request identifier',
         ];
     }
 
     public function verify()
     {
         parent::verify();
+
+        if (null === $this->recommendationId) {
+            throw new \DomainException('Count must be set!');
+        }
+
+        if (null === $this->requestId) {
+            throw new \DomainException('Count must be set!');
+        }
 
         if (null === $this->count) {
             throw new \DomainException('Count must be set!');
