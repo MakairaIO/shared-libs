@@ -61,4 +61,9 @@ final class Constraints
      * OI User-Timezone used in this query.
      */
     const OI_USER_TIMEZONE = 'oi.user.timezone';
+
+    /**
+     *  Use machine learning in this query.
+     */
+    const MACHINE_LEARNING = 'query.machine_learning';
 }
