@@ -59,6 +59,11 @@ class RecommendationQuery extends AbstractQuery
     public $timeRangeMax;
 
     /**
+     * @var string[]
+     */
+    public $attributes;
+
+    /**
      * @return string[]
      */
     public function getMandatoryConstraints()
