@@ -48,6 +48,12 @@ class Query extends AbstractQuery
     public $apiVersion;
 
     /**
+     * @var string
+     */
+    public $state;
+
+
+    /**
      * @return string[]
      */
     public function getMandatoryConstraints()
