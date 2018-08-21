@@ -66,4 +66,19 @@ final class Constraints
      *  Use machine learning in this query.
      */
     const MACHINE_LEARNING = 'query.machine_learning';
+
+    /**
+     * Array of product ids to exclude from result
+     */
+    const EXCLUDE_PRODUCT_IDS = 'exclude_ids.product';
+
+    /**
+     * Array of category ids to exclude from result
+     */
+    const EXCLUDE_CATEGORY_IDS = 'exclude_ids.category';
+
+    /**
+     * Array of manufacturer ids to exclude from result
+     */
+    const EXCLUDE_MANUFACTURER_IDS = 'exclude_ids.manufacturer';
 }
