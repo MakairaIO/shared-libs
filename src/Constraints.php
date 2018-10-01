@@ -70,15 +70,15 @@ final class Constraints
     /**
      * Array of product ids to exclude from result
      */
-    const EXCLUDE_PRODUCT_IDS = 'exclude_ids.product';
+    const PLACED_PRODUCT_IDS = 'placed_ids.product';
 
     /**
      * Array of category ids to exclude from result
      */
-    const EXCLUDE_CATEGORY_IDS = 'exclude_ids.category';
+    const PLACED_CATEGORY_IDS = 'placed_ids.category';
 
     /**
      * Array of manufacturer ids to exclude from result
      */
-    const EXCLUDE_MANUFACTURER_IDS = 'exclude_ids.manufacturer';
+    const PLACED_MANUFACTURER_IDS = 'placed_ids.manufacturer';
 }
