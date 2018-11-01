@@ -81,4 +81,9 @@ final class Constraints
      * Array of manufacturer ids to exclude from result
      */
     const PLACED_MANUFACTURER_IDS = 'placed_ids.manufacturer';
+
+    /**
+     * Array of econda session data to use for resort the elastic result
+     */
+    const ECONDA_DATA = 'econda.data';
 }
