@@ -96,7 +96,6 @@ class Curl extends HttpClient
 
         $this->parseResponseHeaders($responseHeaders, $response);
 
-
         return $response;
     }
 
