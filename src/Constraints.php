@@ -73,6 +73,11 @@ final class Constraints
     const PLACED_PRODUCT_IDS = 'placed_ids.product';
 
     /**
+     * Array of product ids used for aggragation
+     */
+    const PLACED_PRODUCT_IDS_AGGS = 'placed_ids.product.aggs';
+
+    /**
      * Array of category ids to exclude from result
      */
     const PLACED_CATEGORY_IDS = 'placed_ids.category';
