@@ -16,8 +16,8 @@ class SigningTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('request')
             ->with('GET', 'http://example.com/', null, [
-                'X-Makaira-Nonce: 1354439493',
-                'X-Makaira-Hash: 21cc646f4c2033297b02e2936a9d10d114e599b880bc8066dad019b9a407ea0b'
+                'X-Makaira-Nonce: 1608637542',
+                'X-Makaira-Hash: f5b12e9f076a338e6da032750c6fa8f09d97e15523198027b66227b16ba7365c'
             ]);
 
         $signer->request('GET', 'http://example.com/');
@@ -34,8 +34,8 @@ class SigningTest extends \PHPUnit_Framework_TestCase
             ->method('request')
             ->with('GET', 'http://example.com/', '{}', [
                 'Content-Type: application/json',
-                'X-Makaira-Nonce: 1354439493',
-                'X-Makaira-Hash: 0feefe399121d740eab47f9d226c466bdf8b4dde898b3580f0253d25a027c3ab'
+                'X-Makaira-Nonce: 1608637542',
+                'X-Makaira-Hash: a1dbdee6e7fb519e9d8ae88c31b73d517cacb27d1ae7610bf794d258dde99515'
             ]);
 
         $signer->request('GET', 'http://example.com/', '{}', ['Content-Type: application/json']);
