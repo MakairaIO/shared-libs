@@ -116,6 +116,11 @@ class Curl extends HttpClient
         curl_setopt($ch, CURLOPT_ENCODING, '');
         curl_setopt($ch, CURLOPT_HTTPHEADER, array_merge($this->headers, $headers));
         curl_setopt($ch, CURLOPT_WRITEHEADER, $headerBuffer);
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_MAXREDIRS, 3);
+        curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
+
         if (null === $this->timeoutMs) {
             curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
         } else {
@@ -126,9 +131,6 @@ class Curl extends HttpClient
         } else {
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $this->connectTimeoutMs);
         }
-        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_MAXREDIRS, 3);
 
         $curlResponse = curl_exec($ch);
 
