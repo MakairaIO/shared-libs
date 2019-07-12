@@ -9,6 +9,7 @@
 namespace Makaira\HttpClient;
 
 use Makaira\HttpClient;
+use Makaira\TimeoutException;
 
 class Curl extends HttpClient
 {
@@ -133,7 +134,13 @@ class Curl extends HttpClient
 
         if (false === $curlResponse) {
             $error = curl_error($ch);
+            $errno = curl_errno($ch);
             curl_close($ch);
+
+            if (28 === $errno) {
+                throw new TimeoutException("Connection to server {$url} timed out: " . $error);
+            }
+
             throw new \RuntimeException(
                 "Could not connect to server {$url}: " . $error
             );
