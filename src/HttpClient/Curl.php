@@ -9,6 +9,7 @@
 namespace Makaira\HttpClient;
 
 use Makaira\HttpClient;
+use Makaira\TimeoutException;
 
 class Curl extends HttpClient
 {
@@ -115,6 +116,11 @@ class Curl extends HttpClient
         curl_setopt($ch, CURLOPT_ENCODING, '');
         curl_setopt($ch, CURLOPT_HTTPHEADER, array_merge($this->headers, $headers));
         curl_setopt($ch, CURLOPT_WRITEHEADER, $headerBuffer);
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_MAXREDIRS, 3);
+        curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
+
         if (null === $this->timeoutMs) {
             curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
         } else {
@@ -125,15 +131,18 @@ class Curl extends HttpClient
         } else {
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $this->connectTimeoutMs);
         }
-        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_MAXREDIRS, 3);
 
         $curlResponse = curl_exec($ch);
 
         if (false === $curlResponse) {
             $error = curl_error($ch);
+            $errno = curl_errno($ch);
             curl_close($ch);
+
+            if (28 === $errno) {
+                throw new TimeoutException("Connection to server {$url} timed out: " . $error);
+            }
+
             throw new \RuntimeException(
                 "Could not connect to server {$url}: " . $error
             );
