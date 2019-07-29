@@ -9,6 +9,7 @@
 namespace Makaira\HttpClient;
 
 use Makaira\HttpClient;
+use Makaira\TimeoutException;
 
 class Curl extends HttpClient
 {
@@ -20,15 +21,43 @@ class Curl extends HttpClient
     private $headers = [];
 
     /**
-     * socket timeout
+     * socket timeout in sec
      *
-     * @var float
+     * @var int
      */
     private $timeout;
 
-    public function __construct($timeout = 1)
+    /**
+     * establish connection timeout in sec
+     *
+     * @var int
+     */
+    private $connectTimeout;
+
+    /**
+     * socket timeout in msec
+     *
+     * @var int
+     */
+    private $timeoutMs;
+
+    /**
+     * establish connection timeout in msec
+     *
+     * @var int
+     */
+    private $connectTimeoutMs;
+
+    /**
+     * Curl constructor.
+     *
+     * @param int $timeout
+     * @param int $connectTimeout
+     */
+    public function __construct($timeout = 1, $connectTimeout = 0)
     {
-        $this->timeout = $timeout;
+        $this->timeout        = $timeout;
+        $this->connectTimeout = $connectTimeout;
     }
 
     /**
@@ -47,6 +76,22 @@ class Curl extends HttpClient
     }
 
     /**
+     * @param int $timeoutMs
+     */
+    public function setTimeoutMs(int $timeoutMs)
+    {
+        $this->timeoutMs = $timeoutMs;
+    }
+
+    /**
+     * @param int $connectTimeoutMs
+     */
+    public function setConnectTimeoutMs(int $connectTimeoutMs)
+    {
+        $this->connectTimeoutMs = $connectTimeoutMs;
+    }
+
+    /**
      * Execute a HTTP request to the remote server
      *
      * @param string $method
@@ -54,13 +99,12 @@ class Curl extends HttpClient
      * @param mixed  $body
      * @param array  $headers
      *
-     * @return HttpClient\Reponse
+     * @return HttpClient\Response
      */
     public function request($method, $url, $body = null, array $headers = [])
     {
         $ch           = curl_init();
         $headerBuffer = fopen('php://memory', 'w+');
-        $options      = [];
 
         if (0 < strlen($body)) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
@@ -69,22 +113,42 @@ class Curl extends HttpClient
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_ENCODING, '');
         curl_setopt($ch, CURLOPT_HTTPHEADER, array_merge($this->headers, $headers));
         curl_setopt($ch, CURLOPT_WRITEHEADER, $headerBuffer);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout);
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_MAXREDIRS, 3);
+        curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
+
+        if (null === $this->timeoutMs) {
+            curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
+        } else {
+            curl_setopt($ch, CURLOPT_TIMEOUT_MS, $this->timeoutMs);
+        }
+        if (null === $this->connectTimeoutMs) {
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->connectTimeout);
+        } else {
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $this->connectTimeoutMs);
+        }
 
         $curlResponse = curl_exec($ch);
 
         if (false === $curlResponse) {
             $error = curl_error($ch);
+            $errno = curl_errno($ch);
             curl_close($ch);
+
+            if (28 === $errno) {
+                throw new TimeoutException("Connection to server {$url} timed out: " . $error);
+            }
+
             throw new \RuntimeException(
                 "Could not connect to server {$url}: " . $error
             );
         }
 
+        $curlInfo = curl_getinfo($ch);
         curl_close($ch);
 
         fseek($headerBuffer, 0, SEEK_SET);
@@ -95,10 +159,15 @@ class Curl extends HttpClient
         $response->body = $curlResponse;
 
         $this->parseResponseHeaders($responseHeaders, $response);
+        $response->status = $curlInfo['http_code'];
 
         return $response;
     }
 
+    /**
+     * @param $responseHeaders
+     * @param $response
+     */
     private function parseResponseHeaders($responseHeaders, $response)
     {
         $response->headers = [];
@@ -115,7 +184,7 @@ class Curl extends HttpClient
             } else {
                 list ($key, $value) = explode(': ', $line, 2);
 
-                $response->headers[strtolower($key)] = $value;
+                $response->headers[ strtolower($key) ] = $value;
             }
         }
     }
