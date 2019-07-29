@@ -41,4 +41,20 @@ class Signing extends HttpClient
 
         return $this->aggregate->request($method, $url, $body, $headers);
     }
+
+    /**
+     * @param int $timeoutMs
+     */
+    public function setTimeoutMs(int $timeoutMs)
+    {
+        $this->aggregate->setTimeoutMs($timeoutMs);
+    }
+
+    /**
+     * @param int $connectTimeoutMs
+     */
+    public function setConnectTimeoutMs(int $connectTimeoutMs)
+    {
+        $this->aggregate->setConnectTimeoutMs($connectTimeoutMs);
+    }
 }
