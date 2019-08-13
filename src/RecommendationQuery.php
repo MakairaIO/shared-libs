@@ -64,6 +64,11 @@ class RecommendationQuery extends AbstractQuery
     public $attributes;
 
     /**
+     * @var string[]
+     */
+    public $filterAttributes;
+
+    /**
      * @return string[]
      */
     public function getMandatoryConstraints()
