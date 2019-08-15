@@ -39,5 +39,8 @@ class Result extends DataObject
      */
     public $aggregations;
 
-    public $viewConfiguration;
+    /**
+     * @var array
+     */
+    public $additionalData = [];
 }
