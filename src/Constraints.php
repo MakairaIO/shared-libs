@@ -88,7 +88,12 @@ final class Constraints
     const PLACED_MANUFACTURER_IDS = 'placed_ids.manufacturer';
 
     /**
-     * Array of econda session data to use for resort the elastic result
+     * key of personalization to use
      */
-    const ECONDA_DATA = 'econda.data';
+    const PERSONALIZATION_TYPE = 'personalization.type';
+
+    /**
+     * Array of session data to use for resort the elastic result
+     */
+    const PERSONALIZATION_DATA = 'personalization.data';
 }
