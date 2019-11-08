@@ -10,7 +10,6 @@ class Changes extends DataObject
     public $since;
     public $indexName;
     public $count;
-    public $requestedCount;
     public $changes;
     public $active;
     public $language;
