@@ -10,6 +10,8 @@
 
 namespace Makaira;
 
+use Makaira\Exceptions\DomainException;
+
 class Query extends AbstractQuery
 {
     /**
@@ -72,11 +74,11 @@ class Query extends AbstractQuery
         parent::verify();
 
         if (false === is_bool($this->enableAggregations)) {
-            throw new \DomainException('Field $enableAggregations must be a boolean value.');
+            throw new DomainException('Field $enableAggregations must be a boolean value.');
         }
 
         if (false === is_bool($this->isSearch)) {
-            throw new \DomainException('Field $isSearch must be a boolean value.');
+            throw new DomainException('Field $isSearch must be a boolean value.');
         }
     }
 }

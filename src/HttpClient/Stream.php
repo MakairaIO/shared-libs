@@ -3,6 +3,7 @@
 namespace Makaira\HttpClient;
 
 use Makaira\HttpClient;
+use Makaira\Exception as BaseException;
 
 /**
  * HTTP client implementation
@@ -79,7 +80,7 @@ class Stream extends HttpClient
 
         if ($httpFilePointer === false) {
             $error = error_get_last();
-            throw new \RuntimeException(
+            throw new BaseException(
                 "Could not connect to server {$url}: " . $error['message']
             );
         }

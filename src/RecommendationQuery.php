@@ -11,6 +11,8 @@
 
 namespace Makaira;
 
+use Makaira\Exceptions\DomainException;
+
 class RecommendationQuery extends AbstractQuery
 {
     /**
@@ -84,19 +86,19 @@ class RecommendationQuery extends AbstractQuery
         parent::verify();
 
         if (null === $this->recommendationId) {
-            throw new \DomainException('Count must be set!');
+            throw new DomainException('Count must be set!');
         }
 
         if (null === $this->requestId) {
-            throw new \DomainException('Count must be set!');
+            throw new DomainException('Count must be set!');
         }
 
         if (null === $this->count) {
-            throw new \DomainException('Count must be set!');
+            throw new DomainException('Count must be set!');
         }
 
         if (1 > $this->count) {
-            throw new \DomainException('Count must be greater than 0!');
+            throw new DomainException('Count must be greater than 0!');
         }
     }
 }

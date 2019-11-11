@@ -6,14 +6,10 @@
  * Time: 12:48
  */
 
-namespace Makaira\Api\Exceptions\Index;
+namespace Makaira\Api\Exceptions;
 
 use Makaira\Api\Exception as ApiException;
 
-/**
- * exception thrown if an index is locked
- * error can only be found on runtime occurs
- */
 class IndexException extends ApiException
 {
 
