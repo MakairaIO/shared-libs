@@ -8,7 +8,7 @@
  * Author URI: http://www.marmalade.de
  */
 
-namespace Makaira\Import;
+namespace Makaira\Importer;
 
 use Makaira\Exception as BaseException;
 

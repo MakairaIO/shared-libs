@@ -6,9 +6,9 @@
  * Time: 12:48
  */
 
-namespace Makaira\Import\Exceptions;
+namespace Makaira\Importer\Exceptions;
 
-use Makaira\Import\Exception as ImporterException;
+use Makaira\Importer\Exception as ImporterException;
 
 class InvalidArgumentException extends ImporterException
 {
