@@ -43,9 +43,4 @@ class Result extends DataObject
      * @var array
      */
     public $additionalData = [];
-
-    /**
-     * FIXME: Delte after all ES7 Migrations!
-     */
-    public $viewConfiguration;
 }
