@@ -4,12 +4,15 @@
  * It is not Open Source and may not be redistributed.
  * For contact information please visit http://www.marmalade.de
  * Version:    1.0
- * Author:     Florian Ludwig <ludwig@marmalade.de>
+ * Author:     Jens Richter <richter@marmalade.de>
  * Author URI: http://www.marmalade.de
  */
 
-namespace Makaira;
+namespace Makaira\Connect\Exceptions;
 
-class TimeoutException extends \RuntimeException
+use Makaira\Connect\Exception as ConnectException;
+
+class FeatureNotAvailableException extends ConnectException
 {
+
 }

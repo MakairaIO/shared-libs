@@ -12,6 +12,7 @@
 namespace Makaira;
 
 use Kore\DataObject\DataObject;
+use Makaira\Exceptions\DomainException;
 
 abstract class AbstractQuery extends DataObject
 {
@@ -56,12 +57,12 @@ abstract class AbstractQuery extends DataObject
     {
         foreach ($this->getMandatoryConstraints() as $key => $label) {
             if (!isset($this->constraints[$key])) {
-                throw new \DomainException(sprintf('Missing mandatory %s constraint.', $label));
+                throw new DomainException(sprintf('Missing mandatory %s constraint.', $label));
             }
         }
 
         if (0 === preg_match('(^[a-z]{2}$)', $this->constraints[Constraints::LANGUAGE])) {
-            throw new \DomainException('Language constraint must be two letters in lowercase.');
+            throw new DomainException('Language constraint must be two letters in lowercase.');
         }
     }
 

@@ -38,6 +38,16 @@ final class Constraints
     const LANGUAGE = 'query.language';
 
     /**
+     *  Use machine learning in this query.
+     */
+    const MACHINE_LEARNING = 'query.machine_learning';
+
+    /**
+     *  Use data of specified group in this query.
+     */
+    const GROUP = 'query.group';
+
+    /**
      * Vendor used in this query.
      */
     const VENDOR = 'vendor';
@@ -61,12 +71,6 @@ final class Constraints
      * OI User-Timezone used in this query.
      */
     const OI_USER_TIMEZONE = 'oi.user.timezone';
-
-    /**
-     *  Use machine learning in this query.
-     */
-    const MACHINE_LEARNING = 'query.machine_learning';
-
     /**
      * Array of product ids to exclude from result
      */
