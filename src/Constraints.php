@@ -38,6 +38,11 @@ final class Constraints
     const LANGUAGE = 'query.language';
 
     /**
+     * Variant count used in query.
+     */
+    const VARIANT_COUNT = 'query.variant_count';
+
+    /**
      *  Use machine learning in this query.
      */
     const MACHINE_LEARNING = 'query.machine_learning';
