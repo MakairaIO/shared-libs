@@ -45,7 +45,7 @@ final class Constraints
     /**
      * Attributes that should be in response.
      */
-    const ATTRIBUTES = 'query.attributes';
+    const ATTRIBUTE_IDS = 'query.attribute_ids';
 
     /**
      *  Use machine learning in this query.
