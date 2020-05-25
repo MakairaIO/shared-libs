@@ -51,6 +51,19 @@ abstract class AbstractQuery extends DataObject
     }
 
     /**
+     * @param string $constraint
+     * @param string $value
+     *
+     * @return string
+     */
+    public function setConstraint($constraint, $value)
+    {
+        $this->constraints[$constraint] = $value;
+
+        return true;
+    }
+
+    /**
      * @throws \DomainException
      */
     public function verify()
