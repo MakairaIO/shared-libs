@@ -43,6 +43,11 @@ final class Constraints
     const VARIANT_COUNT = 'query.variant_count';
 
     /**
+     * Attributes that should be in response.
+     */
+    const ATTRIBUTES = 'query.attributes';
+
+    /**
      *  Use machine learning in this query.
      */
     const MACHINE_LEARNING = 'query.machine_learning';
