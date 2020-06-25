@@ -86,11 +86,7 @@ class RecommendationQuery extends AbstractQuery
         parent::verify();
 
         if (null === $this->recommendationId) {
-            throw new DomainException('Count must be set!');
-        }
-
-        if (null === $this->requestId) {
-            throw new DomainException('Count must be set!');
+            throw new DomainException('recommendationId (identifier) must be set!');
         }
 
         if (null === $this->count) {
