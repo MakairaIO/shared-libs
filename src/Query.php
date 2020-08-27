@@ -80,5 +80,23 @@ class Query extends AbstractQuery
         if (false === is_bool($this->isSearch)) {
             throw new DomainException('Field $isSearch must be a boolean value.');
         }
+
+        $hasDataType = isset($this->constraints[Constraints::DATA_TYPE]);
+        $hasDataIds  = isset($this->constraints[Constraints::DATA_IDS]);
+
+        if ($hasDataType && !$hasDataIds) {
+            throw new DomainException(
+                sprintf(
+                    'Constraint %s must be used together with %s! You\'re missing %s',
+                    Constraints::DATA_TYPE,
+                    Constraints::DATA_IDS,
+                    Constraints::DATA_IDS
+                )
+            );
+        }
+
+        if (($hasDataType && !$hasDataIds) || (!$hasDataType && $hasDataIds)) {
+            throw new DomainException("");
+        }
     }
 }

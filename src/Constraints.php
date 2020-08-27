@@ -28,6 +28,16 @@ final class Constraints
     const MANUFACTURER = 'query.manufacturer_id';
 
     /**
+     * Filter by the type of data. This requires also Constraints::DATA_IDS (see below).
+     */
+    const DATA_TYPE = 'query.data_type';
+
+    /**
+     * Document IDs for the given data type. This requires also Constraints::DATA_TYPE (see above).
+     */
+    const DATA_IDS = 'query.data_ids';
+
+    /**
      * Only search in the specified shop.
      */
     const SHOP = 'query.shop_id';
