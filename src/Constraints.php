@@ -33,6 +33,11 @@ final class Constraints
     const DATA_TYPE = 'query.data_type';
 
     /**
+     * Filter search result by data type.
+     */
+    const DATATYPES = 'query.datatypes';
+
+    /**
      * Document IDs for the given data type. This requires also Constraints::DATA_TYPE (see above).
      */
     const DATA_IDS = 'query.data_ids';
