@@ -12,6 +12,8 @@ namespace Makaira;
 
 use Makaira\Exceptions\DomainException;
 
+use function sprintf;
+
 class Query extends AbstractQuery
 {
     /**
@@ -87,16 +89,21 @@ class Query extends AbstractQuery
         if ($hasDataType && !$hasDataIds) {
             throw new DomainException(
                 sprintf(
-                    'Constraint %s must be used together with %s! You\'re missing %s',
+                    "Constraint '%s' must be used together with '%s'!",
                     Constraints::DATA_TYPE,
-                    Constraints::DATA_IDS,
                     Constraints::DATA_IDS
                 )
             );
         }
 
-        if (($hasDataType && !$hasDataIds) || (!$hasDataType && $hasDataIds)) {
-            throw new DomainException("");
+        if (!$hasDataType && $hasDataIds) {
+            throw new DomainException(
+                sprintf(
+                    "Constraint '%s' must be used together with '%s'!",
+                    Constraints::DATA_IDS,
+                    Constraints::DATA_TYPE
+                )
+            );
         }
     }
 }
