@@ -28,19 +28,19 @@ final class Constraints
     const MANUFACTURER = 'query.manufacturer_id';
 
     /**
-     * Filter by the type of data. This requires also Constraints::DATA_IDS (see below).
+     * Filter products by attached/related datatype. This requires also Constraints::DATA_IDS (see below).
      */
-    const DATA_TYPE = 'query.data_type';
+    const DATA_TYPE = 'query.related_datatype';
 
     /**
-     * Filter search result by data type.
+     * Filter products by attached/related datatype ids. This requires also Constraints::DATA_TYPE (see above).
+     */
+    const DATA_IDS = 'query.query.related_datatype_ids';
+
+    /**
+     * Use given datatypes for search.
      */
     const DATATYPES = 'query.datatypes';
-
-    /**
-     * Document IDs for the given data type. This requires also Constraints::DATA_TYPE (see above).
-     */
-    const DATA_IDS = 'query.data_ids';
 
     /**
      * Only search in the specified shop.
