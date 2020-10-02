@@ -73,6 +73,11 @@ final class Constraints
     const GROUP = 'query.group';
 
     /**
+     *  Don't change the keys to lowercase
+     */
+    const ORIGINAL_KEYS = 'query.original_keys';
+
+    /**
      * Vendor used in this query.
      */
     const VENDOR = 'vendor';
