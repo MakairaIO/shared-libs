@@ -58,6 +58,11 @@ final class Constraints
     const VARIANT_COUNT = 'query.variant_count';
 
     /**
+     * Variant count used in query.
+     */
+    const MAX_RESULTS = 'query.max_results';
+
+    /**
      * Attributes that should be in response.
      */
     const ATTRIBUTE_IDS = 'query.attribute_ids';
