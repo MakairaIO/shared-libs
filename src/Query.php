@@ -56,6 +56,15 @@ class Query extends AbstractQuery
      */
     public $state;
 
+    /**
+     * @var string
+     */
+    public $url;
+
+    /**
+     * @var array
+     */
+    public $snippetIds;
 
     /**
      * @return string[]
