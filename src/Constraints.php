@@ -53,6 +53,11 @@ final class Constraints
     const LANGUAGE = 'query.language';
 
     /**
+     * Allow every search reasult using this query.
+     */
+    const EVERYTHING = 'query.everything';
+
+    /**
      * Variant count used in query.
      */
     const VARIANT_COUNT = 'query.variant_count';
