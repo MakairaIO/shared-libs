@@ -140,4 +140,9 @@ final class Constraints
      * Array of session data to use for resort the elastic result
      */
     const PERSONALIZATION_DATA = 'personalization.data';
+
+    /**
+     * Array of active experiments for A/B testing, which were received from Makaira.
+     */
+    const AB_EXPERIMENTS = 'ab.experiments';
 }
