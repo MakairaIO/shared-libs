@@ -26,49 +26,54 @@ class RecommendationQuery extends AbstractQuery
     public $requestId;
 
     /**
-     * @var string
+     * @var array|string
      */
     public $productId;
 
     /**
-     * @var string
+     * @var array
      */
-    public $categoryId;
+    public $boosting;
+
+    /**
+     * @var array
+     */
+    public $filter;
+
+    /**
+     * @var boolean
+     */
+    public $randomness;
+
+    /**
+     * @var boolean
+     */
+    public $isUseMachineLearning;
+
+    /**
+     * @var boolean
+     */
+    public $isUseRankingMix;
+
+    /**
+     * @var array
+     */
+    public $config;
 
     /**
      * @var string
      */
-    public $manufacturerId;
+    public $recommendationType;
 
     /**
-     * @var string
+     * @var boolean
      */
-    public $priceRangeMin;
+    public $active;
 
     /**
-     * @var string
+     * @var boolean
      */
-    public $priceRangeMax;
-
-    /**
-     * @var string
-     */
-    public $timeRangeMin;
-
-    /**
-     * @var string
-     */
-    public $timeRangeMax;
-
-    /**
-     * @var string[]
-     */
-    public $attributes;
-
-    /**
-     * @var string[]
-     */
-    public $filterAttributes;
+    public $isPopulateTextSimilarity;
 
     /**
      * @return string[]
