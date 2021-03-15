@@ -125,7 +125,7 @@ class Query extends AbstractQuery
      *
      * @return Query
      */
-    public function sanatize()
+    public function sanitize()
     {
         $this->aggregations = array_filter($this->aggregations);
 
@@ -142,7 +142,7 @@ class Query extends AbstractQuery
     public static function createFromRequest($data)
     {
         return (new static($data))
-            ->verfy()
-            ->sanizite();
+            ->verify()
+            ->sanitize();
     }
 }
