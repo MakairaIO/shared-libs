@@ -79,6 +79,8 @@ class Query extends AbstractQuery
 
     /**
      * Check query data.
+     *
+     * @return Query
      */
     public function verify()
     {
@@ -114,5 +116,33 @@ class Query extends AbstractQuery
                 )
             );
         }
+
+        return $this;
+    }
+
+    /**
+     * Filter out empty aggregations.
+     *
+     * @return Query
+     */
+    public function sanatize()
+    {
+        $this->aggregations = array_filter($this->aggregations);
+
+        return $this;
+    }
+
+    /**
+     * Create a new instance based on request data.
+     *
+     * @param array $data
+     *
+     * @return Query
+     */
+    public static function createFromRequest($data)
+    {
+        return (new static($data))
+            ->verfy()
+            ->sanizite();
     }
 }
