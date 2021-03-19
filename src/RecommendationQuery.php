@@ -56,11 +56,6 @@ class RecommendationQuery extends AbstractQuery
     public $isUseRankingMix;
 
     /**
-     * @var array
-     */
-    public $config;
-
-    /**
      * @var string
      */
     public $recommendationType;
@@ -68,7 +63,7 @@ class RecommendationQuery extends AbstractQuery
     /**
      * @var boolean
      */
-    public $active;
+    public $isActive;
 
     /**
      * @var boolean
