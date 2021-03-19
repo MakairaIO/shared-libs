@@ -26,49 +26,97 @@ class RecommendationQuery extends AbstractQuery
     public $requestId;
 
     /**
-     * @var string
+     * @var array|string
      */
     public $productId;
 
     /**
      * @var string
+     * @deprecated
      */
     public $categoryId;
 
     /**
      * @var string
+     * @deprecated
      */
     public $manufacturerId;
 
     /**
      * @var string
+     * @deprecated
      */
     public $priceRangeMin;
 
     /**
      * @var string
+     * @deprecated
      */
     public $priceRangeMax;
 
     /**
      * @var string
+     * @deprecated
      */
     public $timeRangeMin;
 
     /**
      * @var string
+     * @deprecated
      */
     public $timeRangeMax;
 
     /**
      * @var string[]
+     * @deprecated
      */
     public $attributes;
 
     /**
      * @var string[]
+     * @deprecated
      */
     public $filterAttributes;
+
+    /**
+     * @var array
+     */
+    public $boosting;
+
+    /**
+     * @var array
+     */
+    public $filter;
+
+    /**
+     * @var boolean
+     */
+    public $randomness;
+
+    /**
+     * @var boolean
+     */
+    public $isUseMachineLearning;
+
+    /**
+     * @var boolean
+     */
+    public $isUseRankingMix;
+
+    /**
+     * @var string
+     */
+    public $recommendationType;
+
+    /**
+     * @var boolean
+     */
+    public $isActive;
+
+    /**
+     * @var boolean
+     */
+    public $isPopulateTextSimilarity;
 
     /**
      * @return string[]
@@ -81,6 +129,9 @@ class RecommendationQuery extends AbstractQuery
         ];
     }
 
+    /**
+     * @throws DomainException
+     */
     public function verify()
     {
         parent::verify();

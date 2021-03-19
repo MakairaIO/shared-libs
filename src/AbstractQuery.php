@@ -39,7 +39,7 @@ abstract class AbstractQuery extends DataObject
     /**
      * @param string $constraint
      *
-     * @return string
+     * @return string|array
      */
     public function getConstraint($constraint)
     {
@@ -52,9 +52,9 @@ abstract class AbstractQuery extends DataObject
 
     /**
      * @param string $constraint
-     * @param string $value
+     * @param string|array $value
      *
-     * @return string
+     * @return boolean
      */
     public function setConstraint($constraint, $value)
     {
