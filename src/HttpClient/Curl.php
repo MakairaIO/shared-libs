@@ -161,6 +161,7 @@ class Curl extends HttpClient
 
         $this->parseResponseHeaders($responseHeaders, $response);
         $response->status = $curlInfo['http_code'];
+        $response->totalTime = $curlInfo['total_time'];
 
         return $response;
     }
