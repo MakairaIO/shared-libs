@@ -14,4 +14,27 @@ abstract class HttpClient
      * @return HttpClient\Response
      */
     abstract public function request($method, $url, $body = null, array $headers = array());
+
+    /**
+     * Add default headers
+     *
+     * @param array $headers
+     *
+     * @return void
+     */
+    abstract public function addDefaultHeaders(array $headers);
+
+    /**
+     * @param int $timeoutMs
+     *
+     * @return void
+     */
+    abstract public function setTimeoutMs(int $timeoutMs);
+
+    /**
+     * @param int $connectTimeoutMs
+     *
+     * @return void
+     */
+    abstract public function setConnectTimeoutMs(int $connectTimeoutMs);
 }
