@@ -26,14 +26,14 @@ abstract class HttpClient
 
     /**
      * @param int $timeoutMs
-     * 
+     *
      * @return void
      */
     abstract public function setTimeoutMs(int $timeoutMs);
 
     /**
      * @param int $connectTimeoutMs
-     * 
+     *
      * @return void
      */
     abstract public function setConnectTimeoutMs(int $connectTimeoutMs);
