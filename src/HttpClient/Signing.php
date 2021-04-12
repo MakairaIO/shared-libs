@@ -2,6 +2,7 @@
 
 namespace Makaira\HttpClient;
 
+use Makaira\Exception;
 use Makaira\HttpClient;
 
 class Signing extends HttpClient
@@ -56,5 +57,10 @@ class Signing extends HttpClient
     public function setConnectTimeoutMs(int $connectTimeoutMs)
     {
         $this->aggregate->setConnectTimeoutMs($connectTimeoutMs);
+    }
+
+    public function addDefaultHeaders(array $headers)
+    {
+        throw new Exception("Method not implemented!");
     }
 }
