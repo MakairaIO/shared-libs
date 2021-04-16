@@ -2,7 +2,6 @@
 
 namespace Makaira\HttpClient;
 
-use Makaira\Exception;
 use Makaira\HttpClient;
 use Makaira\Exception as BaseException;
 
@@ -106,15 +105,5 @@ class Stream extends HttpClient
         }
 
         return $response;
-    }
-
-    public function setTimeoutMs(int $timeoutMs)
-    {
-        throw new Exception("Method not implemented!");
-    }
-
-    public function setConnectTimeoutMs(int $connectTimeoutMs)
-    {
-        throw new Exception("Method not implemented!");
     }
 }
