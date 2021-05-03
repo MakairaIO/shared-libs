@@ -151,10 +151,10 @@ class RecommendationQuery extends AbstractQuery
         foreach (['filter', 'boosting'] as $setting) {
             if (!empty($this->$setting) && (!is_array($this->$setting) || !is_array($this->$setting[0]))) {
                 throw new DomainException($setting . ': must be an array of ' . $setting . 's!');
-            } else if (is_array($this->$setting)) {
+            } elseif (is_array($this->$setting)) {
                 $hasInvalidStructure = count(array_filter($this->$setting, function ($structure) {
                         return empty($structure['field']) || empty($structure['operator']);
-                    })) > 0;
+                })) > 0;
 
                 if ($hasInvalidStructure) {
                     throw new DomainException($setting . ': must have at least "field" and "operator" set!');
