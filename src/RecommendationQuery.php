@@ -137,15 +137,29 @@ class RecommendationQuery extends AbstractQuery
         parent::verify();
 
         if (null === $this->recommendationId) {
-            throw new DomainException('recommendationId (identifier) must be set!');
+            throw new DomainException('recommendationId: (identifier) must be set!');
         }
 
         if (null === $this->count) {
-            throw new DomainException('Count must be set!');
+            throw new DomainException('count: must be set!');
         }
 
         if (1 > $this->count) {
-            throw new DomainException('Count must be greater than 0!');
+            throw new DomainException('count: must be greater than 0!');
+        }
+
+        foreach (['filter', 'boosting'] as $setting) {
+            if (!empty($this->$setting) && (!is_array($this->$setting) || !is_array($this->$setting[0]))) {
+                throw new DomainException($setting . ': must be an array of ' . $setting . 's!');
+            } else if (is_array($this->$setting)) {
+                $hasInvalidStructure = count(array_filter($this->$setting, function ($structure) {
+                        return empty($structure['field']) || empty($structure['operator']);
+                    })) > 0;
+
+                if ($hasInvalidStructure) {
+                    throw new DomainException($setting . ': must have at least "field" and "operator" set!');
+                }
+            }
         }
     }
 }
