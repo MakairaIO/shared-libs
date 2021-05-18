@@ -36,6 +36,12 @@ abstract class AbstractQuery extends DataObject
      */
     public $offset;
 
+    const PRIVATE_CONSTRAINTS = [
+        Constraints::RAW_QUERY
+    ];
+
+    private $isGetPrivate = false;
+
     /**
      * @param string $constraint
      *
@@ -43,11 +49,19 @@ abstract class AbstractQuery extends DataObject
      */
     public function getConstraint($constraint)
     {
+        if (in_array($constraint, self::PRIVATE_CONSTRAINTS) && $this->isGetPrivate === false) {
+            return null;
+        }
         if (isset($this->constraints[$constraint])) {
             return $this->constraints[$constraint];
         }
 
         return null;
+    }
+
+    public function setIsGetPrivate($bool)
+    {
+        $this->isGetPrivate = $bool;
     }
 
     /**
