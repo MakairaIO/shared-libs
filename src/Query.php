@@ -67,6 +67,16 @@ class Query extends AbstractQuery
     public $snippetIds;
 
     /**
+     * @var array
+     */
+    public $bundles;
+
+    /**
+     * @var int
+     */
+    public $slot;
+
+    /**
      * @return string[]
      */
     public function getMandatoryConstraints()
