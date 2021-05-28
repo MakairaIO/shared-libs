@@ -40,11 +40,6 @@ class Result extends DataObject
     public $aggregations;
 
     /**
-     * @var Experiments
-     */
-    public $experiments;
-
-    /**
      * @var array
      */
     public $additionalData = [];
