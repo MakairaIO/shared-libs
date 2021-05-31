@@ -12,8 +12,9 @@
 namespace Makaira;
 
 use Makaira\Exceptions\DomainException;
+use Makaira\Query\MachineLearningSupport;
 
-class RecommendationQuery extends AbstractQuery
+class RecommendationQuery extends AbstractQuery implements MachineLearningSupport
 {
     /**
      * @var string
@@ -161,5 +162,15 @@ class RecommendationQuery extends AbstractQuery
                 }
             }
         }
+    }
+
+    /**
+     * Determines if machine learning is enabled for this query.
+     *
+     * @return bool
+     */
+    public function isMachineLearningEnabled()
+    {
+        return (bool) $this->isUseMachineLearning;
     }
 }
