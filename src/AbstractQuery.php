@@ -86,7 +86,7 @@ abstract class AbstractQuery extends DataObject
     abstract public function getMandatoryConstraints();
 
     /**
-     * Filter out all constraints that not exist in Constrains::class.
+     * Filter out all attributes that not exist in the Query class (ex: Query::class or RecommendationQuery::class).
      */
     public static function filterAttributes($data)
     {
