@@ -88,11 +88,6 @@ final class Constraints
     const ORIGINAL_KEYS = 'query.original_keys';
 
     /**
-     *  Don't change the keys to lowercase
-     */
-    const RAW_QUERY = 'query.raw_query';
-
-    /**
      * Vendor used in this query.
      */
     const VENDOR = 'vendor';

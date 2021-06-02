@@ -91,6 +91,7 @@ class Query extends AbstractQuery
      * Check query data.
      *
      * @return Query
+     * @throws DomainException
      */
     public function verify()
     {
@@ -148,11 +149,10 @@ class Query extends AbstractQuery
      * @param array $data
      *
      * @return Query
+     * @throws DomainException
      */
     public static function createFromRequest($data)
     {
-        return (new static($data))
-            ->verify()
-            ->sanitize();
+        return parent::createFromRequest($data)->sanitize();
     }
 }
