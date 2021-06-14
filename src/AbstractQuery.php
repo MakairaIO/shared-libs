@@ -36,12 +36,6 @@ abstract class AbstractQuery extends DataObject
      */
     public $offset;
 
-    const PRIVATE_CONSTRAINTS = [
-        Constraints::RAW_QUERY
-    ];
-
-    private $isGetPrivate = false;
-
     /**
      * @param string $constraint
      *
@@ -49,19 +43,11 @@ abstract class AbstractQuery extends DataObject
      */
     public function getConstraint($constraint)
     {
-        if (in_array($constraint, self::PRIVATE_CONSTRAINTS) && $this->isGetPrivate === false) {
-            return null;
-        }
         if (isset($this->constraints[$constraint])) {
             return $this->constraints[$constraint];
         }
 
         return null;
-    }
-
-    public function setIsGetPrivate($bool)
-    {
-        $this->isGetPrivate = $bool;
     }
 
     /**
@@ -78,7 +64,7 @@ abstract class AbstractQuery extends DataObject
     }
 
     /**
-     * @throws \DomainException
+     * @throws DomainException
      */
     public function verify()
     {
@@ -91,10 +77,43 @@ abstract class AbstractQuery extends DataObject
         if (0 === preg_match('(^[a-z]{2}$)', $this->constraints[Constraints::LANGUAGE])) {
             throw new DomainException('Language constraint must be two letters in lowercase.');
         }
+        return $this;
     }
 
     /**
      * @return string[]
      */
     abstract public function getMandatoryConstraints();
+
+    /**
+     * Filter out all constraints that not exist in Constrains::class.
+     */
+    public function filterConstraints()
+    {
+        $constrainsReflection = new \ReflectionClass(Constraints::class);
+        $constants = $constrainsReflection->getConstants();
+        $filteredConstraints = [];
+        foreach ($this->constraints as $key => $value) {
+            if (in_array($key, $constants)) {
+                $filteredConstraints[$key] = $value;
+            }
+        }
+        $this->constraints = $filteredConstraints;
+        return $this;
+    }
+
+    /**
+     * Create a new instance based on request data.
+     *
+     * @param array $data
+     *
+     * @return static
+     * @throws DomainException
+     */
+    public static function createFromRequest($data)
+    {
+        return (new static($data))
+            ->verify()
+            ->filterConstraints();
+    }
 }

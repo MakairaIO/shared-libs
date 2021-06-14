@@ -162,6 +162,7 @@ class RecommendationQuery extends AbstractQuery implements MachineLearningSuppor
                 }
             }
         }
+        return $this;
     }
 
     /**
