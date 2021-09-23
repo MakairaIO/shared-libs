@@ -181,10 +181,13 @@ class Curl extends HttpClient
             }
 
             if (0 !== strpos($line, 'HTTP/') && !empty($line)) {
-                $headerKeyValue = explode(': ', $line, 2);
-                if (count($headerKeyValue) === 2) {
-                    list ($key, $value) = $headerKeyValue;
-                    $response->headers[strtolower($key)] = $value;
+                $headerKeyValue = explode(':', $line, 2);
+                if (!empty($headerKeyValue)) {
+                    if (isset($headerKeyValue[1])) {
+                        $response->headers[strtolower($headerKeyValue[0])] = ltrim($headerKeyValue[1]);
+                    } else {
+                        $response->headers[strtolower($headerKeyValue[0])] = '';
+                    }
                 }
             }
         }
