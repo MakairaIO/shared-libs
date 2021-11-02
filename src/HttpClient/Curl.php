@@ -175,19 +175,23 @@ class Curl extends HttpClient
         $response->headers = [];
         $rawHeader         = trim($responseHeaders);
 
-        foreach (explode("\r\n", $rawHeader) as $i => $line) {
+        foreach (explode("\r\n", $rawHeader) as $line) {
             if (0 == strlen($line)) {
                 continue;
             }
 
-            if (0 === strpos($line, 'HTTP/')) {
-                preg_match('(^HTTP/(?P<version>\d+\.\d+)\s+(?P<status>\d+))S', $line, $match);
-                $response->status = (int) $match['status'];
-            } else {
-                list ($key, $value) = explode(': ', $line, 2);
-
-                $response->headers[ strtolower($key) ] = $value;
+            if (0 !== strpos($line, 'HTTP/') && !empty($line)) {
+                $headerKeyValue = explode(':', $line, 2);
+                if (!empty($headerKeyValue)) {
+                    if (isset($headerKeyValue[1])) {
+                        $response->headers[strtolower($headerKeyValue[0])] = ltrim($headerKeyValue[1]);
+                    } else {
+                        $response->headers[strtolower($headerKeyValue[0])] = '';
+                    }
+                }
             }
         }
+
+        return $response;
     }
 }
