@@ -53,6 +53,12 @@ class RecommendationQuery extends AbstractQuery implements MachineLearningSuppor
      * @var string
      * @deprecated
      */
+    public $insert;
+
+    /**
+     * @var string
+     * @deprecated
+     */
     public $priceRangeMax;
 
     /**
