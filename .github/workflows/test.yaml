@@ -1,0 +1,30 @@
+name: Test PHP
+on:
+  push:
+    branches:
+      - '*'
+
+env:
+  php_version: 7.1
+  composer_version: 1.x
+
+jobs:
+  release:
+    name: Test
+    if: |
+      !(github.event_name == 'push' && contains(github.event.head_commit.message, '[skip ci]')) &&
+      !(github.event_name == 'pull_request' && contains(join(github.event.pull_request.title, github.event.pull_request.body), '[skip ci]'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: php-actions/composer@v6
+        with:
+          version: ${{ env.composer_version }}
+          php_version: ${{ env.php_version }}
+
+      - name: Run PHPCS
+        run: php vendor/bin/phpcs --standard=PSR2 src/
+
+      - name: Run PHP Unit
+        run: php vendor/bin/phpunit --coverage-text
