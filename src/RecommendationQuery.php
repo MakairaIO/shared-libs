@@ -118,6 +118,11 @@ class RecommendationQuery extends AbstractQuery implements MachineLearningSuppor
      * @var boolean
      */
     public $isPopulateTextSimilarity;
+    
+    /**
+     * @var boolean
+     */
+    public $boostWithSimilarAttributes;
 
     /**
      * @return string[]
