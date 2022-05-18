@@ -2,7 +2,9 @@ name: Test PHP
 on:
   push:
     branches:
-      - '*'
+      - '**'
+      - '!stable'
+      - '!stage'
 
 env:
   php_version: 7.1
