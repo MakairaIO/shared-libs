@@ -8,6 +8,7 @@ on:
 
 env:
   php_version: 7.1
+  phpunit_version: 4
   composer_version: 1
 
 jobs:
@@ -25,13 +26,11 @@ jobs:
           version: ${{ env.composer_version }}
           php_version: ${{ env.php_version }}
 
-      - uses: php-actions/phpunit@v3
+      - name: Run PHPUnit
+        uses: php-actions/phpunit@v3
         with:
-          version: 4
-          php_version: 7.1
+          version: ${{ env.phpunit_version }}
+          php_version: ${{ env.php_version }}
 
       - name: Run PHPCS
         run: php vendor/bin/phpcs --standard=PSR2 src/
-
-      - name: Run PHP Unit
-        run: php vendor/bin/phpunit --coverage-text
