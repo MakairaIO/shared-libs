@@ -9,6 +9,7 @@
 namespace Makaira\Api\Exceptions;
 
 use Makaira\Api\Exception as ApiException;
+use Throwable;
 
 /**
  * exception thrown if an index is locked
@@ -19,7 +20,7 @@ class ImporterBlockedException extends ApiException
     public function __construct(
         $message = 'Importer blocked',
         $code = 0,
-        \Throwable $previous = null
+        Throwable $previous = null
     ) {
         parent::__construct($message, $code, $previous);
     }
