@@ -11,6 +11,7 @@
 namespace Makaira;
 
 use Exception as BaseException;
+use Throwable;
 
 class Exception extends BaseException
 {
