@@ -145,4 +145,9 @@ final class Constraints
      * Array of active experiments for A/B testing, which were received from Makaira.
      */
     const AB_EXPERIMENTS = 'ab.experiments';
+
+    /**
+     * Array of ranking mix configurations that will be used to override the current configurations.
+     */
+    const RANKING_MIX_OVERRIDING_CONFIG = 'ranking_mix_overriding_config';
 }
