@@ -150,4 +150,9 @@ final class Constraints
      * Array of ranking mix configurations that will be used to override the current configurations.
      */
     const RANKING_MIX_OVERRIDING_CONFIG = 'ranking_mix_overriding_config';
+
+    /**
+     * Array of weather groups that will be used to build makaira boost fields
+     */
+    const WEATHER_GROUPS = 'weather_groups';
 }
