@@ -107,7 +107,7 @@ class Curl extends HttpClient
         $ch           = curl_init();
         $headerBuffer = fopen('php://memory', 'w+');
 
-        if (0 < strlen($body)) {
+        if (0 < strlen((string) $body)) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
         }
 
