@@ -147,10 +147,6 @@ class RecommendationQuery extends AbstractQuery implements MachineLearningSuppor
     {
         parent::verify();
 
-        if (null === $this->recommendationId) {
-            throw new DomainException('recommendationId: (identifier) must be set!');
-        }
-
         if (null === $this->count) {
             throw new DomainException('count: must be set!');
         }
