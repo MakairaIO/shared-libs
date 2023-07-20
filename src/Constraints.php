@@ -63,6 +63,11 @@ final class Constraints
     const VARIANT_COUNT = 'query.variant_count';
 
     /**
+     * Variant sorting used in query.
+     */
+    const VARIANT_SORTING = 'query.variant_sorting';
+
+    /**
      * Variant count used in query.
      */
     const MAX_RESULTS = 'query.max_results';
