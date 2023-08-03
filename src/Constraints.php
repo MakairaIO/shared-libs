@@ -160,4 +160,9 @@ final class Constraints
      * Array of weather groups that will be used to build makaira boost fields
      */
     const WEATHER_GROUPS = 'weather_groups';
+
+    /**
+     * Use data for specific persona in this query.
+     */
+    const PERSONA = 'query.persona';
 }
