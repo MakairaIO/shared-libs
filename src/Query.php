@@ -138,8 +138,9 @@ class Query extends AbstractQuery
      */
     public function sanitize()
     {
-        // This was commented out because array filter will also remove 0, and we do not want this
-        // $this->aggregations = array_filter($this->aggregations);
+        $this->aggregations = array_filter($this->aggregations, static function ($value) {
+            return $value !== null && $value !== '';
+        });
 
         return $this;
     }
