@@ -130,6 +130,11 @@ class RecommendationQuery extends AbstractQuery implements MachineLearningSuppor
     public $diversify;
 
     /**
+     * @var boolean
+     */
+    public $mergeFilter = false;
+
+    /**
      * @return string[]
      */
     public function getMandatoryConstraints()
