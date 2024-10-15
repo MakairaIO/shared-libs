@@ -10,7 +10,7 @@
 
 namespace Makaira;
 
-use Kore\DataObject\DataObject;
+use Makaira\DataObject;
 
 class ConnectionConfiguration extends DataObject
 {

@@ -2,7 +2,9 @@
 
 namespace Makaira\HttpClient;
 
-class Response extends \Kore\DataObject\DataObject
+use Makaira\DataObject;
+
+class Response extends DataObject
 {
     public $totalTime;
     public $status;

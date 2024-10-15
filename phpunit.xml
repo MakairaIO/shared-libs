@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
-         stopOnFailure="false"
-         bootstrap="vendor/autoload.php"
-         syntaxCheck="false">
-
-    <groups>
-        <exclude>
-            <group>functional</group>
-        </exclude>
-    </groups>
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        processIsolation="false"
+        stopOnFailure="false"
+        bootstrap="vendor/autoload.php">
 
     <testsuites>
         <testsuite name="Unit Tests">
@@ -22,9 +18,23 @@
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist>
+    <groups>
+        <exclude>
+            <group>functional</group>
+        </exclude>
+    </groups>
+
+    <coverage>
+        <include>
             <directory suffix=".php">src/</directory>
-        </whitelist>
-  </filter>
+        </include>
+        <report>
+            <clover outputFile="build/coverage-clover.xml" />
+            <html outputDirectory="build/code-coverage" lowUpperBound="35" highLowerBound="70" />
+        </report>
+    </coverage>
+
+    <logging>
+        <junit outputFile="var/testing/junit.xml" />
+    </logging>
 </phpunit>

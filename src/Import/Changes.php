@@ -2,7 +2,7 @@
 
 namespace Makaira\Import;
 
-use Kore\DataObject\DataObject;
+use Makaira\DataObject;
 
 class Changes extends DataObject
 {

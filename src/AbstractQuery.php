@@ -11,7 +11,7 @@
 
 namespace Makaira;
 
-use Kore\DataObject\DataObject;
+use Makaira\DataObject;
 use Makaira\Exceptions\DomainException;
 
 abstract class AbstractQuery extends DataObject

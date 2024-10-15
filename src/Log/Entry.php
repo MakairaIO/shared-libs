@@ -10,7 +10,7 @@
 
 namespace Makaira\Log;
 
-use Kore\DataObject\DataObject;
+use Makaira\DataObject;
 
 class Entry extends DataObject
 {

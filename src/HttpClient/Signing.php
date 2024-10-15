@@ -2,7 +2,11 @@
 
 namespace Makaira\HttpClient;
 
+use Exception;
 use Makaira\HttpClient;
+
+use function bin2hex;
+use function random_bytes;
 
 class Signing extends HttpClient
 {
@@ -16,10 +20,19 @@ class Signing extends HttpClient
      */
     private $sharedSecret;
 
-    public function __construct(HttpClient $aggregate, $sharedSecret)
+    private $randomNumberGenerator;
+
+    public function __construct(HttpClient $aggregate, string $sharedSecret, callable $rng = null)
     {
         $this->aggregate = $aggregate;
         $this->sharedSecret = $sharedSecret;
+
+        if (null === $rng) {
+            $rng = static function () {
+                return bin2hex(random_bytes(16));
+            };
+        }
+        $this->randomNumberGenerator = $rng;
     }
 
     /**
@@ -27,14 +40,15 @@ class Signing extends HttpClient
      *
      * @param string $method
      * @param string $url
-     * @param mixed $body
-     * @param array $headers
+     * @param mixed  $body
+     * @param array  $headers
      *
      * @return HttpClient\Response
+     * @throws Exception
      */
     public function request($method, $url, $body = null, array $headers = array())
     {
-        $nonce = mt_rand(0, mt_getrandmax());
+        $nonce = ($this->randomNumberGenerator)();
         $hash = hash_hmac('sha256', $nonce . ':' . $body, $this->sharedSecret);
         $headers[] = 'X-Makaira-Nonce: ' . $nonce;
         $headers[] = 'X-Makaira-Hash: ' . $hash;

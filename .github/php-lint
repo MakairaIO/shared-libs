@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+find "$SCRIPT_PATH/../src" -name '*.php' -exec php -l '{}' \;

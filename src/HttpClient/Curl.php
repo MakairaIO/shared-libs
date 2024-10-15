@@ -176,11 +176,11 @@ class Curl extends HttpClient
         $rawHeader         = trim($responseHeaders);
 
         foreach (explode("\r\n", $rawHeader) as $line) {
-            if (0 == strlen($line)) {
+            if (0 === strlen($line)) {
                 continue;
             }
 
-            if (0 !== strpos($line, 'HTTP/') && !empty($line)) {
+            if (!empty($line) && 0 !== strpos($line, 'HTTP/')) {
                 $headerKeyValue = explode(':', $line, 2);
                 if (!empty($headerKeyValue)) {
                     if (isset($headerKeyValue[1])) {
