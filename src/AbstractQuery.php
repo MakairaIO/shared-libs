@@ -14,6 +14,14 @@ namespace Makaira;
 use Kore\DataObject\DataObject;
 use Makaira\Exceptions\DomainException;
 
+use function preg_replace;
+use function sprintf;
+use function strlen;
+use function strtolower;
+use function strtoupper;
+use function substr;
+use function trim;
+
 abstract class AbstractQuery extends DataObject
 {
     /**
@@ -74,9 +82,28 @@ abstract class AbstractQuery extends DataObject
             }
         }
 
-        if (0 === preg_match('(^[a-z]{2}$)', $this->constraints[Constraints::LANGUAGE])) {
-            throw new DomainException('Language constraint must be two letters in lowercase.');
+        $trimmed  = trim($this->constraints[Constraints::LANGUAGE]);
+        $lowered  = strtolower($trimmed);
+        $replaced = preg_replace('/\W/', '-', $lowered);
+
+        switch (strtolower($replaced)) {
+            case 2:
+                $language = $replaced;
+                break;
+            case 4:
+                $language = sprintf('%s-%s', substr($replaced, 0, 2), strtoupper(substr($replaced, 2, 2)));
+                break;
+            case 5:
+                $language = sprintf('%s-%s', substr($replaced, 0, 2), strtoupper(substr($replaced, 3, 2)));
+                break;
+            default:
+                throw new DomainException(
+                    sprintf("The language constraint must be a language or a locale, but it contains '%s'.", $trimmed)
+                );
         }
+
+        $this->constraints[Constraints::LANGUAGE] = $language;
+
         return $this;
     }
 
