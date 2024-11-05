@@ -86,7 +86,7 @@ abstract class AbstractQuery extends DataObject
         $lowered  = strtolower($trimmed);
         $replaced = preg_replace('/\W/', '-', $lowered);
 
-        switch (strtolower($replaced)) {
+        switch (strlen($replaced)) {
             case 2:
                 $language = $replaced;
                 break;
