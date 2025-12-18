@@ -173,5 +173,4 @@ final class Constraints
     const VARIANT_SORT_FIELD = 'query.variant_sort_field';
 
     const VARIANT_SORT_ORDER = 'query.variant_sort_order';
-
 }
