@@ -165,4 +165,13 @@ final class Constraints
      * Use data for specific persona in this query.
      */
     const PERSONA = 'query.persona';
+
+    const USE_VARIANT_SORTING = 'query.use_variant_sorting';
+
+    const VARIANT_SCORE_MODE = 'query.variant_score_mode';
+
+    const VARIANT_SORT_FIELD = 'query.variant_sort_field';
+
+    const VARIANT_SORT_ORDER = 'query.variant_sort_order';
+
 }
