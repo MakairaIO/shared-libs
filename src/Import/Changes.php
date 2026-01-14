@@ -15,4 +15,5 @@ class Changes extends DataObject
     public $language;
     public $highLoad = false;
     public $requestedCount;
+    public $retry = false;
 }
