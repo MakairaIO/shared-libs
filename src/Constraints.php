@@ -173,4 +173,14 @@ final class Constraints
     const VARIANT_SORT_FIELD = 'query.variant_sort_field';
 
     const VARIANT_SORT_ORDER = 'query.variant_sort_order';
+
+    const USE_CHILD_ATTRIBUTE_SORTING = 'query.use_child_attribute_sorting';
+
+    const ATTRIBUTE_ID = 'query.attribute_id';
+
+    const ATTRIBUTE_TYPE = 'query.attribute_type';
+
+    const ATTRIBUTE_SORT_ORDER = 'query.attribute_sort_order';
+
+    const ATTRIBUTE_AGGREGATION_MODE = 'query.attribute_aggregation_mode';
 }
