@@ -77,6 +77,11 @@ class Query extends AbstractQuery
     public $slot;
 
     /**
+     * @var array
+     */
+    public $components;
+
+    /**
      * @return string[]
      */
     public function getMandatoryConstraints()
